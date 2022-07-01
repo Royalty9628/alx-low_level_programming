@@ -6,7 +6,7 @@
  * main - random number
  * This program will assign a random number to the variable n
  * return (0) always
- * /
+ */
 int main(void)
 {
 	int n;
