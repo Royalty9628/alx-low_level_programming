@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 /**
- * main - random number
- * This program will assign a random number to the variable n
+ * main - assign's a random number to the variable n
+ * execute's it
  * return (0) always
  */
 int main(void)
