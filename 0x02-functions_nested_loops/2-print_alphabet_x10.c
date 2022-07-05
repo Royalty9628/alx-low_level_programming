@@ -1,8 +1,8 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * function that prints 10 times the alphabet, in lowercase, followed by a new line.
- * Return: Always 0.
+ * main - entry point
+ * Return: Always 0 (success)
  */
 void print_alphabet_x10(void)
 {
