@@ -2,21 +2,19 @@
 
 /**
  * main - entry point
+ * Printing lowercase alphabet 10 times.
  * Return: Always 0 (success)
  */
-void print_alphabet_x10(void)
+int main(void)
 {
-	int count = 0;
+	int i;
 
-	char letter;
+	char c;
 
-		while (count < 10)
-		{
-			for (letter = 'a'; letter <= 'z'; letter++)
-			{
-				putchar(letter);
-			}
-			count++;
-			putchar('\n');
-		}
+	for (i = 0; i < 10; i++)
+	{
+		for (c = 'a'; c <= 'z'; c++)
+			_putchar(c);
+		_putchal('\n');
+	}
 }
