@@ -3,7 +3,7 @@
  * main - print_last_digit
  * Return: The last digit.
  */
-int main (void)
+int print_last_digit(int)
 {
 	if (n < 0)
 		n = n * -1;
