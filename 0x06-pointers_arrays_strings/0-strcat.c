@@ -3,7 +3,7 @@
 /**
  * _strcat - function that concatenates two strings
  * @src: char[] to be appended to dest
- * dest: char[] to be appended to
+ * @dest: char[] to be appended to
  * Return: Always 0
  */
 
