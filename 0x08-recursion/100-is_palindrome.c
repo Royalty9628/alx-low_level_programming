@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * is_palindrome - function that return string palindrome
+ * is_palin - function that return string palindrome
  * @s: the string pointer
  * Return: length of string
  */
 
-int is_palindrome(char *s)
+int is_palin(char *s)
 {
 	if (*s == '\0')
 	{
@@ -14,7 +14,7 @@ int is_palindrome(char *s)
 	}
 	else
 	{
-		return (1 + is_palindrome(s + 1));
+		return (1 + is_palin(s + 1));
 	}
 }
 
@@ -44,14 +44,14 @@ int palindrome(char *s, int x, int y)
 }
 
 /**
- * is_palin - check if the string is palindrome
+ * is_palindrome - check if the string is palindrome
  * @s: the string pointer
  * Return: 1 or 0
  */
 
-int is_palin(char *s)
+int is_palindrome(char *s)
 {
-	if (palindrome(s, 0, is_palindrome(s)) == 1)
+	if (palindrome(s, 0, is_palin(s)) == 1)
 	{
 		return (1);
 	}
