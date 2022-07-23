@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 
 	sum = 0;
 
-	for (A = 1; A < argc; A++)
+	for (A = 1; argc > A; A++)
 	{
 		for (B = 0; argv[A][B] != '\0'; B++)
 		{
