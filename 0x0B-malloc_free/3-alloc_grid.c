@@ -3,45 +3,38 @@
 #include  <stdlib.h>
 
 /**
- * **alloc_grid - ruturns a pointer to a 2D array of integers
+ * **alloc_grid - returns a pointer to a 2 dimensional array of integers.
  * @width: int
  * @height: int
- * Retrun: pointer to 2D array
+ * Return: 2d array
  */
 
 int **alloc_grid(int width, int height)
 {
-	int A, B;
-	int **grid;
+int **tab, i, j;
+tab = malloc(sizeof(*tab) * height);
 
-	grid = malloc(sizeof(*grid) * height);
+if (width <= 0 || height <= 0 || tab == 0)
+	return (NULL);
 
-	if (width <= 0 || height <= 0 || grid == 0)
+else
+{
+	for (i = 0; i < height; i++)
 	{
-		return (NULL);
-	}
-
-	else
-	{
-		for (A = 0; height > A; A++)
+		tab[i] = malloc(sizeof(**tab) * width);
+		if (tab[i] == 0)
 		{
-			grid[A] = malloc(sizeof(**grid) * width);
-			if (grid[A] == 0)
-			{
-				while (A--)
-				{
-					free(grid[A]);
-				}
-				free(grid);
-				return (NULL);
-			}
-
-			for (B = 0; width > B; B++)
-			{
-				grid[A][B] = 0;
-			}
+			/*Free everything if malloc fails*/
+			while (i--)
+				free(tab[i]);
+			free(tab);
+			return (NULL);
 		}
-	}
 
-	return (grid);
+		for (j = 0; j < width; j++)
+			tab[i][j] = 0;
+	}
+}
+
+return (tab);
 }
