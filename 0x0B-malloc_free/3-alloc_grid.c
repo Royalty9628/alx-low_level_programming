@@ -6,7 +6,6 @@
  * **alloc_grid - ruturns a pointer to a 2D array of integers
  * @width: int
  * @height: int
- *
  * Retrun: pointer to 2D array
  */
 
