@@ -19,6 +19,7 @@ void _puts(char *str)
 	}
 }
 
+
 /**
  * _atoi - convert a string to n integer
  * @s: string
