@@ -14,4 +14,8 @@ void _puts(char *str);
 int _atoi(const char *s);
 void print_int(unsigned long int n);
 
+void errors(void);
+int _strlen(char *s);
+int is_digit(char *s);
+
 #endif
