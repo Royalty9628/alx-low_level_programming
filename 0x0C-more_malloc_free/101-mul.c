@@ -1,67 +1,90 @@
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-/**
-  * _isdigit - tells if the string consists of digits
-  * @argv: pointer to current item in argument
-  * Return: return 0 if all digits, 1 if not all digits.
-  */
-int _isdigit(char *argv)
-{
-	int i;
 
-	i = 0;
-	while (argv[i])
+/**
+  * _puts - prints a string
+  * @str: pointer to the string
+  * Return: void
+  */
+
+void _puts(char *str)
+{
+	int x = 0;
+
+	while (str[x])
 	{
-		if (argv[i] >= '0' && argv[i] <= '9')
-			i++;
-		else
-			return (1);
+		_putchar(str[x]);
+		x++;
 	}
-	return (0);
 }
-/**
-  * _atoi - converts a string of ascii digits to the values they represent
-  * @s: pointer to the source string
-  * Return: value of digits
-  */
-int _atoi(char *s)
-{
-	int i, result;
 
-	i = result = 0;
-	while (s[i])
+/**
+ * _atoi - convert a string to n integer
+ * @s: string
+ * Return: converted integer
+ */
+
+int _atoi(const char *s)
+{
+	int X  = 1;
+	unsigned long int Y = 0, myNum, A;
+
+	for (myNum = 0; !(s[myNum] >= 48 && s[myNum] <= 57); myNum++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[myNum] == '-')
 		{
-			result *= 10;
-			result += (s[i] - '0');
+			X = X * -1;
 		}
-		i++;
 	}
-	return (result);
+
+	for (A = myNum; s[A] >= 48 && s[A] <= 57; A++)
+	{
+		Y = Y * 10;
+		Y = Y + (s[A] - 48);
+	}
+
+	return (X * Y);
 }
+
 /**
-  * main - main function call
-  * @argc: argument count
-  * @argv: 2D array of arguments
-  * Return: return 0 on success, 98 on failure
-  */
-int main(int argc, char *argv[])
+ * print_int - prints an interger
+ * @n: int
+ * Return: 0
+ */
+
+void print_int(unsigned long int n)
 {
-	int i;
+	unsigned long int Div = 1, B, rep;
+
+	for (B = 0; n / Div > 9; B++)
+		Div = Div * 10;
+
+	for (; Div >= 1; n = n % Div, Div = Div / 10)
+	{
+		rep = n / Div;
+		_putchar('0' + rep);
+	}
+}
+
+/**
+ * main - print the result of the multiplication
+ * @argc: int
+ * @argv: list
+ * Return: Always 0
+ */
+
+int main(int argc, char const *argv[])
+{
+	(void)argc;
 
 	if (argc != 3)
 	{
-		printf("Error\n");
+		_puts("Error ");
 		exit(98);
 	}
-	for (i = 1; i < argc; i++)
-	{
-		if (_isdigit(argv[i]))
-		{
-			printf("Error\n");
-			exit(98);
-		}
-	}
+	print_int(_atoi(argv[1]) * _atoi(argv[2]));
+	_putchar('\n');
+
 	return (0);
 }
