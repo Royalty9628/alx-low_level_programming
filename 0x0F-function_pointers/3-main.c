@@ -11,23 +11,31 @@
 
 int main(int argc, char *argv[])
 {
-	int x, y, z;
-	int (*f)(int, int);
+	int a, b, answer;
+	int (*function)(int, int);
 
 	if (argc != 4)
 	{
-		printf("Error\n");
+		puts("Error");
 		exit(98);
 	}
-	x = atoi(argv[1]);
-	y = atoi(argv[3]);
-	f = get_op_func(argv[2]);
-	if (f == NULL)
+
+	if (argv[2][1] != '\0')
 	{
-		printf("Error\n");
+		puts("Error");
 		exit(99);
 	}
-	z = f(x, y);
-	printf("%d\n", z);
+
+	function = get_op_func(*(argv + 2));
+	if (!function)
+	{
+		puts("Error");
+		exit(99);
+	}
+
+	a = atoi(argv[1]);
+	b = atoi(argv[3]);
+	answer = function(a, b);
+	printf("%d\n", answer);
 	return (0);
 }
