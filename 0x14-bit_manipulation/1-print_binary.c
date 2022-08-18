@@ -3,28 +3,29 @@
 /**
  * print_binary - function that prints the binary representation of a number
  * @n: the input number
+ * Description: convert decimal to binary
  * Return: binary number
  */
 
 void print_binary(unsigned long int n)
 {
-	int j, k = 0;
-	unsigned long int tmp, num = 0;
+	int flag = 0;
+	unsigned long int mask = 1;
 
+	mask <<= 63;
 	if (n == 0)
 		_putchar('0');
 
-	tmp = n;
-
-	for (k = 0; tmp != 0; k++)
-		tmp = tmp >> 1;
-
-	for (j = k - 1; j >= 0; j--)
+	while (mask > 0)
 	{
-		num = 1 << j;
-		if ((n & num) != 0)
-			_putchar('1');
-		else
+		if ((n & mask) == 0 && flag == 1)
 			_putchar('0');
+		if ((n & mask) != 0)
+		{
+			_putchar('1');
+			flag = 1;
+		}
+
+		mask = mask >> 1;
 	}
 }
