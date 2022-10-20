@@ -1,35 +1,66 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_set - adds an element to the hash table
- * @ht: the hashs table I want to add or update the key/value to
- * @key: is the str passed to djb2 (tha key )
- * @value: value associated with the key
- * Return: 1 if succeeded or 0 if fail
+ * add_n_hash - adds a node at the beginning of a hash at a given index
+ * @head: head of the hash linked list
+ * @key: key of the hash
+ * @value: value to store
+ * Return: head of the hash
+ */
+
+hash_node_t *add_n_hash(hash_node_t **head, const char *key, const char *value)
+{
+	hash_node_t *tmp;
+
+	tmp = *head;
+
+	while (tmp != NULL)
+	{
+		if (strcmp(key, tmp->key) == 0)
+		{
+			free(tmp->value);
+			tmp->value = strdup(value);
+			return (*head);
+		}
+		tmp = tmp->next;
+	}
+
+	tmp = malloc(sizeof(hash_node_t));
+
+	if (tmp == NULL)
+		return (NULL);
+
+	tmp->key = strdup(key);
+	tmp->value = strdup(value);
+	tmp->next = *head;
+	*head = tmp;
+
+	return (*head);
+}
+
+
+/**
+ * hash_table_set - adds a hash (key, value) to a given hash table
+ * @ht: pointer to the hash table
+ * @key: key of the hash
+ * @value: value to store
+ * Return: 1 if successes, 0 if fails
  */
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *new_node;
-	unsigned long int index, size;
+	unsigned long int k_index;
 
-	if (ht == NULL || key == NULL || value == NULL)
+	if (ht == NULL)
 		return (0);
 
-	size = ht->size;
-	index = key_index((const unsigned char *)key, size);
-
-	if (ht->array[index] != NULL && strcmp(ht->array[index]->key, key) == 0)
-	{
-		ht->array[index]->value = strdup(value);
-		return (1);
-	}
-	new_node = malloc(sizeof(hash_node_t));
-	if (new_node == NULL)
+	if (key == NULL || *key == '\0')
 		return (0);
-	new_node->key = strdup(key);
-	new_node->value = strdup(value);
-	new_node->next = ht->array[index];
-	ht->array[index] = new_node;
+
+	k_index = key_index((unsigned char *)key, ht->size);
+
+	if (add_n_hash(&(ht->array[k_index]), key, value) == NULL)
+		return (0);
+
 	return (1);
 }
