@@ -50,9 +50,8 @@ void hash_table_print(const hash_table_t *ht);
 void hash_table_delete(hash_table_t *ht);
 
 shash_table_t *shash_table_create(unsigned long int size);
-shash_node_t *make_shash_node(const char *key, const char *value);
-void add_to_sorted_list(shash_table_t *table, shash_node_t *node);
 int shash_table_set(shash_table_t *ht, const char *key, const char *value);
+void insert_sorted(shash_table_t *ht, shash_node_t *new);
 char *shash_table_get(const shash_table_t *ht, const char *key);
 void shash_table_print(const shash_table_t *ht);
 void shash_table_print_rev(const shash_table_t *ht);
